@@ -17,7 +17,7 @@ type (
 	Context interface {
 		GetAccount(oneIDToken string, res *ResponseAccount) error
 		CreateFolder(accountID string, folderName string, res *ResponseCreateFolder) error
-		SavePDFbase64(data savePDFBody, res *ResponseSaveFileBase64) error
+		SavePDFbase64(data SavePDFBody, res *ResponseSaveFileBase64) error
 		DownloadFile(string) (string, error)
 	}
 
@@ -90,7 +90,7 @@ func (c *context) CreateFolder(accountID string, folderName string, res *Respons
 	return nil
 }
 
-func (c *context) SavePDFbase64(data savePDFBody, res *ResponseSaveFileBase64) error {
+func (c *context) SavePDFbase64(data SavePDFBody, res *ResponseSaveFileBase64) error {
 	var resRequest requests.Response
 	headers := map[string]string{
 		echo.HeaderContentType:   "application/json",
