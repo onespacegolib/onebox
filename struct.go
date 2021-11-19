@@ -39,7 +39,7 @@ type ResponseCreateFolder struct {
 
 type SavePDFBody struct {
 	AccountID     string `json:"account_id"`
-	FolderName    string `json:"fileName"`
+	FileName      string `json:"fileName"`
 	FileExtension string `json:"fileExtension"`
 	Base64        string `json:"base64"`
 	FolderID      string `json:"folder_id"`
