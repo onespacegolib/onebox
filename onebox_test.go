@@ -51,7 +51,7 @@ func TestLoginMobile(t *testing.T) {
 	}
 	filePayload := SavePDFBody{
 		AccountID:     accountID,
-		FolderName:    "test",
+		FileName:      "test",
 		FileExtension: "pdf",
 		Base64:        BASE64,
 		FolderID:      resCreate.Data.FolderID,
