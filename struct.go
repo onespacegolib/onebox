@@ -37,7 +37,7 @@ type ResponseCreateFolder struct {
 	ErrorMessage string `json:"errorMessage"`
 }
 
-type savePDFBody struct {
+type SavePDFBody struct {
 	AccountID     string `json:"account_id"`
 	FolderName    string `json:"fileName"`
 	FileExtension string `json:"fileExtension"`

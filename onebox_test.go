@@ -49,7 +49,7 @@ func TestLoginMobile(t *testing.T) {
 	if err := onebox.CreateFolder(accountID, "test-folder", &resCreate); err != nil {
 		fmt.Print(err)
 	}
-	filePayload := savePDFBody{
+	filePayload := SavePDFBody{
 		AccountID:     accountID,
 		FolderName:    "test",
 		FileExtension: "pdf",
