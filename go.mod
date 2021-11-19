@@ -1,4 +1,4 @@
-module git.onespace.co.th/osgolib/onebox
+module github.com/onespacegolib/onebox
 
 go 1.15
 
