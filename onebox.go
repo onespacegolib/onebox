@@ -45,7 +45,7 @@ func (c *context) GetAccount(oneIDToken string, res *ResponseAccount) error {
 	if err := requests.Call().Post(requests.Params{
 		URL:     c.apiEndpoint(APIEndpointGetAccount),
 		HEADERS: headers,
-		TIMEOUT: 30,
+		TIMEOUT: 60 * 60,
 		BODY:    bytes.NewBuffer(bP),
 	}, &resRequest).Error(); err != nil {
 		c.err = err
@@ -75,7 +75,7 @@ func (c *context) CreateFolder(accountID string, folderName string, res *Respons
 	if err := requests.Call().Post(requests.Params{
 		URL:     c.apiEndpoint(APIEndpointCreateFolder),
 		HEADERS: headers,
-		TIMEOUT: 30,
+		TIMEOUT: 60 * 60,
 		BODY:    bytes.NewBuffer(bP),
 	}, &resRequest).Error(); err != nil {
 		c.err = err
@@ -100,7 +100,7 @@ func (c *context) SavePDFbase64(data SavePDFBody, res *ResponseSaveFileBase64) e
 	if err := requests.Call().Post(requests.Params{
 		URL:     c.apiEndpoint(APIEndpointSaveBase64),
 		HEADERS: headers,
-		TIMEOUT: 30,
+		TIMEOUT: 60 * 60,
 		BODY:    bytes.NewBuffer(bP),
 	}, &resRequest).Error(); err != nil {
 		c.err = err
