@@ -5,8 +5,10 @@ type Response struct {
 	Data   struct {
 		Download string `json:"download"`
 	} `json:"data"`
-	ErrorMessage interface{} `json:"errorMessage"`
-	Code         int         `json:"code"`
+	ErrorMessage    interface{} `json:"errorMessage"`
+	Code            int         `json:"code"`
+	ErrorCode       string      `json:"errorCode"`
+	TransactionCode string      `json:"transaction_code"`
 }
 type ResponseAccount struct {
 	Result          []Result `json:"result"`
@@ -31,10 +33,11 @@ type ResponseCreateFolder struct {
 		FolderName     string `json:"folder_name"`
 		ParentFolderID string `json:"parent_folder_id"`
 	} `json:"data"`
-	Message      string `json:"message"`
-	Status       string `json:"status"`
-	ErrorCode    string `json:"errorCode"`
-	ErrorMessage string `json:"errorMessage"`
+	Message         string `json:"message"`
+	Status          string `json:"status"`
+	ErrorCode       string `json:"errorCode"`
+	ErrorMessage    string `json:"errorMessage"`
+	TransactionCode string `json:"transaction_code"`
 }
 
 type SavePDFBody struct {
@@ -52,6 +55,9 @@ type ResponseSaveFileBase64 struct {
 		FolderName string `json:"folder_name"`
 		StatusFile string `json:"status_file"`
 	} `json:"data"`
-	Message string `json:"message"`
-	Status  string `json:"status"`
+	Message         string `json:"message"`
+	Status          string `json:"status"`
+	ErrorCode       string `json:"errorCode"`
+	ErrorMessage    string `json:"errorMessage"`
+	TransactionCode string `json:"transaction_code"`
 }
