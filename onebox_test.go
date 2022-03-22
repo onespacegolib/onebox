@@ -46,7 +46,7 @@ func TestLoginMobile(t *testing.T) {
 		}
 	}
 	var resCreate ResponseCreateFolder
-	if err := onebox.CreateFolder(accountID, "test-folder", &resCreate); err != nil {
+	if err := onebox.CreateFolder(accountID, "", "test-folder", &resCreate); err != nil {
 		fmt.Print(err)
 	}
 	filePayload := SavePDFBody{

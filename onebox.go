@@ -16,7 +16,7 @@ var (
 type (
 	Context interface {
 		GetAccount(oneIDToken string, res *ResponseAccount) error
-		CreateFolder(accountID string, folderName string, res *ResponseCreateFolder) error
+		CreateFolder(accountID string, parentFolderID string, folderName string, res *ResponseCreateFolder) error
 		SavePDFbase64(data SavePDFBody, res *ResponseSaveFileBase64) error
 		DownloadFile(string) (string, error)
 	}
@@ -60,7 +60,7 @@ func (c *context) GetAccount(oneIDToken string, res *ResponseAccount) error {
 	return nil
 }
 
-func (c *context) CreateFolder(accountID string, folderName string, res *ResponseCreateFolder) error {
+func (c *context) CreateFolder(accountID string, parentFolderID string, folderName string, res *ResponseCreateFolder) error {
 	var resRequest requests.Response
 	headers := map[string]string{
 		echo.HeaderContentType:   "application/json",
@@ -68,7 +68,7 @@ func (c *context) CreateFolder(accountID string, folderName string, res *Respons
 	}
 	payload := map[string]string{
 		"account_id":       accountID,
-		"parent_folder_id": "",
+		"parent_folder_id": parentFolderID,
 		"folder_name":      folderName,
 	}
 	bP, _ := json.Marshal(payload)
