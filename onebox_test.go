@@ -65,6 +65,10 @@ func TestLoginMobile(t *testing.T) {
 	if err != nil {
 		fmt.Println(err)
 	}
+	// _, err = onebox.DownloadFileBase64(resSaveBase64.Data.ID, accountID)
+	// if err != nil {
+	// 	fmt.Println("DownloadFileBase64", err)
+	// }
 	assert.Equal(t, d, ONE_BOX_HOST+"/onebox_downloads/api/v2/download_file?file_id="+resSaveBase64.Data.ID)
 }
 

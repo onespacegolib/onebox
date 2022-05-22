@@ -9,4 +9,6 @@ const (
 	APIEndpointSaveBase64 = `/onebox_uploads/api/save_base64`
 	// APIEndpointDownload ใช้ download เอกสาร
 	APIEndpointDownload = `/onebox_downloads/api/v2/download_file`
+	// APIEndpointDownload ใช้ download เอกสารเป็น base64
+	APIEndpointDownloadBase64 = `/onebox_uploads/api/downloads_files_as_base64`
 )

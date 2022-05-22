@@ -2,8 +2,10 @@ package onebox
 
 import (
 	"bytes"
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"strconv"
 
 	requests "git.onespace.co.th/osgolib/http-requests"
 	"github.com/labstack/echo/v4"
@@ -19,6 +21,7 @@ type (
 		CreateFolder(accountID string, folderName string, res *ResponseCreateFolder) error
 		SavePDFbase64(data SavePDFBody, res *ResponseSaveFileBase64) error
 		DownloadFile(string) (string, error)
+		DownloadFileBase64(fileID string, accID string) (string, error)
 	}
 
 	context struct {
@@ -120,4 +123,30 @@ func (c *context) DownloadFile(fileID string) (string, error) {
 		return "", fmt.Errorf("file not found")
 	}
 	return c.apiEndpoint(APIEndpointDownload) + "?file_id=" + fileID, nil
+}
+
+func (c *context) DownloadFileBase64(fileID string, accID string) (string, error) {
+	if fileID == "" {
+		return "", fmt.Errorf("file not found")
+	}
+	var resRequest requests.Response
+	headers := map[string]string{
+		echo.HeaderContentType:   "application/json",
+		echo.HeaderAuthorization: "Bearer " + c.bearer,
+	}
+	if err := requests.Call().Get(requests.Params{
+		URL:     c.apiEndpoint(APIEndpointDownload) + "?file_id=" + fileID + "&account_id=" + accID,
+		HEADERS: headers,
+		TIMEOUT: 60 * 60,
+	}, &resRequest).Error(); err != nil {
+		c.err = err
+		return "", c.err
+	}
+
+	if resRequest.Code > 299 {
+		return "", fmt.Errorf(strconv.FormatInt(int64(resRequest.Code), 10) + " " + string(resRequest.Result))
+	}
+
+	encoded := base64.StdEncoding.EncodeToString(resRequest.Result)
+	return encoded, nil
 }
